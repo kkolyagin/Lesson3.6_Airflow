@@ -74,8 +74,6 @@ x-airflow-common:
 services:
   postgres:
     image: postgres:13
-    ports:
-      - "65432:5432"
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
@@ -89,17 +87,12 @@ services:
     restart: always
   db:
     image: postgres
-    ports:
-      - 5430:5432
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: test	
-  adminer:
-    image: adminer
-    restart: always
+      POSTGRES_DB: "test"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
     ports:
-      - 8081:8080
+      - "5430:5432"
   redis:
     image: redis:latest
     expose:
