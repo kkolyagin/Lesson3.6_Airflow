@@ -1,3 +1,5 @@
+import random
+
 from datetime import datetime
 import psycopg2
 import numpy as np
@@ -25,6 +27,10 @@ def get_con_creditials(conn_id) -> BaseHook.get_connection:
 def hello():
     print("Hello!")
 
+def TwoNumsPrt():
+    print(random.randint(0, 9))
+    print(random.randint(0, 9))
+    
 def connect_to_psql(**kwargs):
     ti = kwargs['ti']
     conn_id=Variable.get("conn_id")
@@ -92,12 +98,14 @@ def readFileLineCount(**kwargs):
 # A DAG represents a workflow, a collection of tasks
 with DAG(dag_id="test_dag", start_date=datetime(2022, 11, 30), schedule="0 0 * * *") as dag:    
     # Tasks are represented as operators
-    #bash_task = BashOperator(task_id="hello", bash_command="echo hello", do_xcom_push=False)
-    #python_task = PythonOperator(task_id="world", python_callable = hello)
+    bash_task = BashOperator(task_id="hello", bash_command="echo hello", do_xcom_push=False)
+    python_task = PythonOperator(task_id="world", python_callable = hello)
+    TwoNumsPrt_task = PythonOperator(task_id="TwoNumsPrt", python_callable = TwoNumsPrt)
+    
     #conn_to_psql_tsk = PythonOperator(task_id="conn_to_psql", python_callable = connect_to_psql)
     #read_from_psql_tsk = PythonOperator(task_id="read_from_psql", python_callable = read_from_psql)
-    FileLineCount_tsk =PythonOperator(task_id="FileLineCount", python_callable = FileLineCount)
-    ReadFileLineCount_tsk = PythonOperator(task_id="ReadFileLineCount", python_callable=readFileLineCount)
+    #FileLineCount_tsk =PythonOperator(task_id="FileLineCount", python_callable = FileLineCount)
+    #ReadFileLineCount_tsk = PythonOperator(task_id="ReadFileLineCount", python_callable=readFileLineCount)
     #sql_sensor = SqlSensor(
     #    task_id='limits_test',
     #    conn_id=Variable.get("conn_id"),
@@ -106,4 +114,5 @@ with DAG(dag_id="test_dag", start_date=datetime(2022, 11, 30), schedule="0 0 * *
     # Set dependencies between tasks
     #bash_task >> python_task >> conn_to_psql_tsk >> read_from_psql_tsk
     #conn_to_psql_tsk >> read_from_psql_tsk>> sql_sensor>> bash_task
-    FileLineCount_tsk >> ReadFileLineCount_tsk
+    #FileLineCount_tsk >> ReadFileLineCount_tsk
+    bash_task >> python_task >> TwoNumsPrt_task
