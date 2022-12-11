@@ -14,6 +14,13 @@
 Вычисленную разность записывает в конец того же файла, не затирая его содержимого.
 
 Описание файла dags\hard_dag.py:
+-дополнительно в airflow:
+	создать переменные (Admin\Variables)
+		key=filename, val=/opt/airflow/hard.txt
+		key=conn_id, val=postgre_con
+	создать соединение (Admin\Connections)
+		Conn_Id=postgre_con, Conn_Type=postgres, Host=host.docker.internal, Port=5430
+		
 создается DAG "hard_dag" запускающийся 5 раз с интервалом 1 минута ежедневно в 20:19 UTC в нем задачи:	
 	- bash_task, python_task, TwoNumsPrt_task, TwoNumsCalc - аналогичны таковым в "light_dag"
 	- sens - Sensor-оператор {should_continue}, который возвращает True в том случае, если выполнены следующие условия:
@@ -22,5 +29,9 @@
 			{def check_file_count(afilename)  - пока в проекте, всегда возвращает True}
 		iii.     Финальное число рассчитано верно.
 			{def check_file_sum(afilename)}
-
+	-select_next_task оператор ветвления, который в случае, если текстовый файл существует не пустой - создает таблицу
+		аналогичной структуры в Postgres и наполняет ее данными из файла(за иск. последнего числа).
+		В случае если файл не существует или в нем нет данных – печатает сообщение об ошибке
+	-change_table_task Если удалось создать таблицу с данными –Postgres-оператор, который добавляет в таблицу еще одну колонку, 
+		в которой будут размещаться числа рассчитанные по логике из пункта TwoNumsCalc
 

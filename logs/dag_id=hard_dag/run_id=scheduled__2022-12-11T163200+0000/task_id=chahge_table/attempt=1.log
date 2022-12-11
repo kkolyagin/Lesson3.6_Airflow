@@ -1,0 +1,27 @@
+[2022-12-11T16:33:11.214+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: hard_dag.chahge_table scheduled__2022-12-11T16:32:00+00:00 [queued]>
+[2022-12-11T16:33:11.224+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: hard_dag.chahge_table scheduled__2022-12-11T16:32:00+00:00 [queued]>
+[2022-12-11T16:33:11.225+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-11T16:33:11.225+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 1
+[2022-12-11T16:33:11.225+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-11T16:33:11.241+0000] {taskinstance.py:1383} INFO - Executing <Task(PostgresOperator): chahge_table> on 2022-12-11 16:32:00+00:00
+[2022-12-11T16:33:11.245+0000] {standard_task_runner.py:55} INFO - Started process 26915 to run task
+[2022-12-11T16:33:11.248+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'hard_dag', 'chahge_table', 'scheduled__2022-12-11T16:32:00+00:00', '--job-id', '7638', '--raw', '--subdir', 'DAGS_FOLDER/hard_dag.py', '--cfg-path', '/tmp/tmp69_1sobz']
+[2022-12-11T16:33:11.249+0000] {standard_task_runner.py:83} INFO - Job 7638: Subtask chahge_table
+[2022-12-11T16:33:11.312+0000] {task_command.py:376} INFO - Running <TaskInstance: hard_dag.chahge_table scheduled__2022-12-11T16:32:00+00:00 [running]> on host 5663d391ad54
+[2022-12-11T16:33:11.398+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=hard_dag
+AIRFLOW_CTX_TASK_ID=chahge_table
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-11T16:32:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-11T16:32:00+00:00
+[2022-12-11T16:33:11.407+0000] {base.py:71} INFO - Using connection ID 'postgre_con' for task execution.
+[2022-12-11T16:33:11.429+0000] {sql.py:315} INFO - Running statement: ALTER TABLE IF EXISTS rnd_table ADD COLUMN IF NOT EXISTS coef integer;            update rnd_table            set coef = calc_coef.total            from (select s.*,                  coalesce(sum(s.value_1-s.value_2) over (order by s.id                   rows between unbounded preceding and current row),                  0) as total                  from rnd_table s            order by s.id) calc_coef            where rnd_table.id= calc_coef.id, parameters: None
+[2022-12-11T16:33:11.436+0000] {sql.py:324} INFO - Rows affected: 5
+[2022-12-11T16:33:11.439+0000] {postgres.py:96} INFO - NOTICE:  column "coef" of relation "rnd_table" already exists, skipping
+
+[2022-12-11T16:33:11.449+0000] {taskinstance.py:1406} INFO - Marking task as SUCCESS. dag_id=hard_dag, task_id=chahge_table, execution_date=20221211T163200, start_date=20221211T163311, end_date=20221211T163311
+[2022-12-11T16:33:11.499+0000] {local_task_job.py:159} INFO - Task exited with return code 0
+[2022-12-11T16:33:11.517+0000] {taskinstance.py:2623} INFO - 0 downstream tasks scheduled from follow-on schedule check

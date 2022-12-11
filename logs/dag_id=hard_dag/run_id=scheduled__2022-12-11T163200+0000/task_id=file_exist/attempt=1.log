@@ -1,0 +1,47 @@
+[2022-12-11T16:33:09.765+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: hard_dag.file_exist scheduled__2022-12-11T16:32:00+00:00 [queued]>
+[2022-12-11T16:33:09.778+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: hard_dag.file_exist scheduled__2022-12-11T16:32:00+00:00 [queued]>
+[2022-12-11T16:33:09.778+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-11T16:33:09.779+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 1
+[2022-12-11T16:33:09.779+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-11T16:33:09.792+0000] {taskinstance.py:1383} INFO - Executing <Task(PythonOperator): file_exist> on 2022-12-11 16:32:00+00:00
+[2022-12-11T16:33:09.797+0000] {standard_task_runner.py:55} INFO - Started process 26913 to run task
+[2022-12-11T16:33:09.801+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'hard_dag', 'file_exist', 'scheduled__2022-12-11T16:32:00+00:00', '--job-id', '7637', '--raw', '--subdir', 'DAGS_FOLDER/hard_dag.py', '--cfg-path', '/tmp/tmp2p6855g_']
+[2022-12-11T16:33:09.802+0000] {standard_task_runner.py:83} INFO - Job 7637: Subtask file_exist
+[2022-12-11T16:33:09.887+0000] {task_command.py:376} INFO - Running <TaskInstance: hard_dag.file_exist scheduled__2022-12-11T16:32:00+00:00 [running]> on host 5663d391ad54
+[2022-12-11T16:33:09.982+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=hard_dag
+AIRFLOW_CTX_TASK_ID=file_exist
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-11T16:32:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-11T16:32:00+00:00
+[2022-12-11T16:33:10.001+0000] {base.py:71} INFO - Using connection ID 'postgre_con' for task execution.
+[2022-12-11T16:33:10.027+0000] {sql.py:315} INFO - Running statement: CREATE TABLE if not exists rnd_table (id serial PRIMARY KEY, value_1 integer, value_2 integer), parameters: None
+[2022-12-11T16:33:10.049+0000] {base.py:71} INFO - Using connection ID 'postgre_con' for task execution.
+[2022-12-11T16:33:10.067+0000] {sql.py:315} INFO - Running statement: truncate rnd_table, parameters: None
+[2022-12-11T16:33:10.082+0000] {logging_mixin.py:137} INFO - INSERT INTO rnd_table (value_1,value_2) VALUES (9, 7)
+[2022-12-11T16:33:10.088+0000] {base.py:71} INFO - Using connection ID 'postgre_con' for task execution.
+[2022-12-11T16:33:10.111+0000] {sql.py:315} INFO - Running statement: INSERT INTO rnd_table (value_1,value_2) VALUES (9, 7), parameters: None
+[2022-12-11T16:33:10.117+0000] {sql.py:324} INFO - Rows affected: 1
+[2022-12-11T16:33:10.121+0000] {logging_mixin.py:137} INFO - INSERT INTO rnd_table (value_1,value_2) VALUES (9, 6)
+[2022-12-11T16:33:10.129+0000] {base.py:71} INFO - Using connection ID 'postgre_con' for task execution.
+[2022-12-11T16:33:10.147+0000] {sql.py:315} INFO - Running statement: INSERT INTO rnd_table (value_1,value_2) VALUES (9, 6), parameters: None
+[2022-12-11T16:33:10.151+0000] {sql.py:324} INFO - Rows affected: 1
+[2022-12-11T16:33:10.157+0000] {logging_mixin.py:137} INFO - INSERT INTO rnd_table (value_1,value_2) VALUES (8, 2)
+[2022-12-11T16:33:10.164+0000] {base.py:71} INFO - Using connection ID 'postgre_con' for task execution.
+[2022-12-11T16:33:10.184+0000] {sql.py:315} INFO - Running statement: INSERT INTO rnd_table (value_1,value_2) VALUES (8, 2), parameters: None
+[2022-12-11T16:33:10.188+0000] {sql.py:324} INFO - Rows affected: 1
+[2022-12-11T16:33:10.193+0000] {logging_mixin.py:137} INFO - INSERT INTO rnd_table (value_1,value_2) VALUES (1, 0)
+[2022-12-11T16:33:10.200+0000] {base.py:71} INFO - Using connection ID 'postgre_con' for task execution.
+[2022-12-11T16:33:10.218+0000] {sql.py:315} INFO - Running statement: INSERT INTO rnd_table (value_1,value_2) VALUES (1, 0), parameters: None
+[2022-12-11T16:33:10.222+0000] {sql.py:324} INFO - Rows affected: 1
+[2022-12-11T16:33:10.228+0000] {logging_mixin.py:137} INFO - INSERT INTO rnd_table (value_1,value_2) VALUES (1, 0)
+[2022-12-11T16:33:10.235+0000] {base.py:71} INFO - Using connection ID 'postgre_con' for task execution.
+[2022-12-11T16:33:10.252+0000] {sql.py:315} INFO - Running statement: INSERT INTO rnd_table (value_1,value_2) VALUES (1, 0), parameters: None
+[2022-12-11T16:33:10.256+0000] {sql.py:324} INFO - Rows affected: 1
+[2022-12-11T16:33:10.259+0000] {python.py:177} INFO - Done. Returned value was: None
+[2022-12-11T16:33:10.268+0000] {taskinstance.py:1406} INFO - Marking task as SUCCESS. dag_id=hard_dag, task_id=file_exist, execution_date=20221211T163200, start_date=20221211T163309, end_date=20221211T163310
+[2022-12-11T16:33:10.296+0000] {local_task_job.py:159} INFO - Task exited with return code 0
+[2022-12-11T16:33:10.317+0000] {taskinstance.py:2623} INFO - 1 downstream tasks scheduled from follow-on schedule check
