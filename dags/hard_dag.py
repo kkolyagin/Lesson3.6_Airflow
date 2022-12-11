@@ -67,7 +67,7 @@ default_args = {
     "start_date": datetime(2022,12,8)    
 }
 
-with DAG(dag_id="hard_dag", default_args=default_args, schedule_interval= "2-8 20 * * *", catchup=False) as dag:    
+with DAG(dag_id="hard_dag", default_args=default_args, schedule_interval= "50-54 12 * * *", max_active_runs=5, catchup=False) as dag:    
     # Tasks are represented as operators
     bash_task = BashOperator(task_id="hello", bash_command="echo hello", do_xcom_push=False)
     python_task = PythonOperator(task_id="world", python_callable = hello)
